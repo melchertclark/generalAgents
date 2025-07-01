@@ -1,0 +1,2 @@
+# No external dependencies required - uses only Python standard library
+# subprocess, sys, shlex are all built-in modules 

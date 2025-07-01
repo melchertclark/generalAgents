@@ -1,0 +1,8 @@
+# Requirements for Codex Conversation Orchestrator
+# No additional dependencies beyond Python standard library
+# This script uses the same codex command-line tool as the parent directory
+
+# The script requires:
+# - Python 3.6+
+# - codex CLI tool installed and in PATH
+# - Standard library modules: subprocess, sys, shlex, json, re, os, time, datetime, typing 
