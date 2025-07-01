@@ -24,6 +24,14 @@ from datetime import datetime
 from pathlib import Path
 import sys
 
+# Load environment variables from .env file if it exists
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    # If python-dotenv is not installed, we'll just use system environment variables
+    pass
+
 # Remove the poll_agent1 import since we're using gemini-cli now
 # sys.path.append(str(Path(__file__).parent.parent))
 # from poll_agent1 import analyze_transcript_with_agent
@@ -118,8 +126,11 @@ class GeminiPollingEngine:
     """
     
     def __init__(self):
-        # API Configuration - same as enhanced_polling.py for compatibility
-        self.api_key = "9c45d7ac-f7cb-4007-8fde-8e61c8f31886"
+        # API Configuration - load from environment variables for security
+        self.api_key = os.getenv("LIMITLESS_API_KEY")
+        if not self.api_key:
+            raise ValueError("LIMITLESS_API_KEY environment variable is required. Please set it in your .env file or environment.")
+        
         self.api_url = "https://api.limitless.ai/v1/lifelogs"
         self.headers = {"X-API-Key": self.api_key, "Accept": "application/json"}
         
